@@ -32,11 +32,14 @@ const Textform = (props) => {
     const [text, setText] = useState('');
   return (
     <> 
-    <div className="container">
+    <div className="container" style= {{color: props.mode==='dark' ? 'white' : 'dark'}} >
     <h1>{props.heading}</h1>
     <div className="form-group">
-    <label htmlFor="my-box">Example textarea</label>
-    <textarea className="form-control" placeholder='Enter Text Here' value={text} onChange={handleoneChange} id="my-box" rows="10"></textarea>
+    {/* <label htmlFor="my-box">Example textarea</label> */}
+    <textarea className="form-control" placeholder='Enter Text Here' value={text} 
+    onChange={handleoneChange} 
+    style= {{backgroundColor: props.mode==='light' ? 'dark' : 'light', color: props.mode==='black' ? 'white' : 'black' }}
+     id="my-box" rows="10" > </textarea>
   </div>
   <button className="btn btn-primary my-3 " onClick={handleupclick}>Convert uppercase</button>
   <button className="btn btn-primary my-3 mx-2" onClick={handleLoclick}>Convert Lowercase</button>
@@ -45,12 +48,12 @@ const Textform = (props) => {
 
   </div>
 
-  <div className="container my-2">
+  <div className="container my-2" style= {{color: props.mode==='dark' ? 'white' : 'black'}} >
     <h1>Your text Summary</h1>
     <p>{text.split(' ').length} words & {text.length} characters</p>
 
     <h2>Preview</h2>
-    <p>{text}</p>
+    <p>{text.length>0?text:"Enter SomeThing in the TextBox above" }</p>
 
   </div>
     </>
