@@ -2,16 +2,18 @@ import React,{useState} from 'react'
 
 const Textform = (props) => {
 
-    const handleupclick =()=>{
+    const handleupclick =()=>{          // to convert uppercasecase
         // console.log('UperCase Clicked' + text)
         let newText = text.toLocaleUpperCase();
         setText(newText)
+        props.showAlert("Converted to UpperCase", 'success')
     }
 
-    const handleLoclick =()=>{
+    const handleLoclick =()=>{   // to convert lowercase
       // console.log('UperCase Clicked' + text)
       let newText = text.toLowerCase();
       setText(newText)
+      props.showAlert("Converted to LowerCase", 'success')
   }
 
     const handleoneChange =(event)=>{
@@ -19,17 +21,25 @@ const Textform = (props) => {
         setText(event.target.value)
     }
 
-    const handleCopy = ()=>{
+    const handleClearText=()=>{                     //clear clipboard
+      let newText=''
+      setText(newText)
+      props.showAlert("Clear clipboard", 'warning')
+    }
+    const handleCopy = ()=>{     // to copied text
       var text = document.getElementById("my-box")
       text.select()
       navigator.clipboard.writeText(text.value)
+      props.showAlert("Copied Text!",'success')
     }
 
-    const handleExtraSpaces =()=>{
-      let newText =text.split(/[ ]+/)
+    const handleExtraSpaces =()=>{  // to removes extra spaces 
+      let newText = text.split(/[ ]+/)
       setText(newText.join(" "))
+      props.showAlert("Removed Extra Spaces", 'success')
     }
     const [text, setText] = useState('');
+    // const [first, setfirst] = useState(second)
   return (
     <> 
     <div className="container" style= {{color: props.mode==='dark' ? 'white' : 'dark'}} >
@@ -45,6 +55,7 @@ const Textform = (props) => {
   <button className="btn btn-primary my-3 mx-2" onClick={handleLoclick}>Convert Lowercase</button>
   <button className="btn btn-primary my-3 mx-2" onClick={handleCopy}>Copy Text</button>
   <button className="btn btn-primary my-3 mx-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+  <button className="btn btn-primary my-3 " onClick={handleClearText}>Clear Text</button>
 
   </div>
 
