@@ -3,12 +3,12 @@ import './App.css';
 import About from './components/About';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
-import Textform from './components/Textform';
+import Textform from './components/Textform'; 
+import { Routes, Route } from 'react-router-dom';
 
-
-function App() {
+ function App () {
   
-  const [mode, setMode] = useState('light'); //wheather dark mode is enabled or not
+  const [mode, setMode] = useState('light');    //wheather dark mode is enabled or not
   const [alert, setAlert] = useState(null);
 
   const showAlert = (messege, type) =>{
@@ -37,16 +37,14 @@ function App() {
     <>
     <Navbar title = "TextUtils" mode={mode}  togglemode={togglemode} about = "About US"/>   
     <Alert   alert = {alert} />
-  
-    <div className = "container my-3">
-    <Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  />
-    </div>
 
-    {/* <About/> */}
-    
-    
+    <Routes>
+      <Route exact path='/home' element={<div className = "container my-3">
+    <Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  /></div>}>
+      </Route>
+      <Route exact path='/about' element={ <About/>}></Route>
+    </Routes>  
     </>
   );
 }
-
 export default App;
