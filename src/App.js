@@ -34,15 +34,13 @@ import { Routes, Route } from 'react-router-dom';
     }
   }
   return (
-    <>
+    <> 
     <Navbar title = "TextUtils" mode={mode}  togglemode={togglemode} about = "About US"/>   
     <Alert   alert = {alert} />
-
     <Routes>
-      <Route exact path='/home' element={<div className = "container my-3">
-    <Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  /></div>}>
+      <Route exact path='/home' element={<Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  />}>
       </Route>
-      <Route exact path='/about' element={ <About/>}></Route>
+      <Route exact path='/about' element={ <About  mode={mode} />}></Route>
     </Routes>  
     </>
   );
