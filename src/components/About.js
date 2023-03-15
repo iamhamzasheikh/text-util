@@ -1,4 +1,3 @@
-
 export default function About(props) {
 
   let myStyle ={

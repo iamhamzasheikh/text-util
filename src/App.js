@@ -4,7 +4,7 @@ import About from './components/About';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform'; 
-import { Routes, Route } from 'react-router-dom';
+import {Route, BrowserRouter, Routes } from 'react-router-dom';
 
  function App () {
   
@@ -18,7 +18,7 @@ import { Routes, Route } from 'react-router-dom';
     })
     setTimeout(()=>{
       setAlert(null)
-    }, 1024    )
+    }, 1000    )
   }
   const togglemode  = ()=>{
     if (mode==='light'){
@@ -30,19 +30,20 @@ import { Routes, Route } from 'react-router-dom';
       setMode('light');
       document.body.style.background= 'white'
       showAlert("Light Mode is Enable ", 'success');
-
     }
   }
   return (
-    <> 
+    <>
+    <BrowserRouter> 
     <Navbar title = "TextUtils" mode={mode}  togglemode={togglemode} about = "About US"/>   
     <Alert   alert = {alert} />
     <Routes>
-      <Route exact path='/home' element={<Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  />}>
+      <Route exact path='/' element={<Textform showAlert={showAlert}  heading = "Enter Messsege"  mode={mode}  />}>
       </Route>
       <Route exact path='/about' element={ <About  mode={mode} />}></Route>
     </Routes>  
+    </BrowserRouter>
     </>
-  );
+  ); 
 }
 export default App;

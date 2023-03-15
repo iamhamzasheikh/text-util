@@ -18,7 +18,6 @@ const Textform = (props) => {
   }
 
     const handleoneChange =(event)=>{
-        console.log('onchange')
         setText(event.target.value)
     }
 
@@ -63,8 +62,7 @@ const Textform = (props) => {
 
   <div className="container my-2" style= {{color: props.mode==='dark' ? 'white' : 'black'}} >
     <h1>Your text Summary</h1>
-    <p>{text.split(' ').filter((element)=>{return element.length!==0}).length} words & {text.length} characters</p>
-
+    <p>{text.split(/\s+/ ).filter((element)=>{return element.length!==0}).length} words & {text.length} characters</p>
     <h2>Preview</h2>
     <p>{text.length>0?text:"Enter SomeThing in the TextBox above" }</p>
 
